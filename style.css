@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #0f172a, #020617);
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.monster-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Pesan */
+.speech-bubble {
+    position: absolute;
+    top: -70px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #333;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.speech-bubble.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Monster */
+.monster {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(145deg, #1e293b, #020617);
+    border-radius: 80px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    user-select: none;
+}
+
+.monster::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 85px;
+    background: linear-gradient(45deg, #00f0ff, #7000ff);
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0.4;
+}
+
+/* Wajah & Mulut */
+.face {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+}
+
+.eyes-container {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 25px;
+}
+
+.eye {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pupil {
+    width: 22px;
+    height: 22px;
+    background: #020617;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mouth-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.mouth {
+    width: 60px;
+    height: 10px;
+    background: #00f0ff;
+    border-radius: 20px;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 10px #00f0ff;
+}
+
+/* Moods */
+.monster.happy { 
+    box-shadow: 0 0 50px #00f0ff; 
+
+}
+
+.monster.angry { 
+    background: #450a0a; animation: shake 0.1s infinite; 
+}
+
+.monster.angry .eye { 
+    background: #ff4d4d; 
+}
+
+.monster.angry .mouth { 
+    width: 70px; height: 30px; border-radius: 10px 10px 50% 50%; background: #ff4d4d; 
+}
+
+@keyframes float { 
+    0%, 100% { 
+        transform: translateY(0); 
+    } 50% { transform: translateY(-30px); 
+    } 
+}
+
+@keyframes shake { 
+    0% { 
+        transform: translate(3px, 3px); 
+    } 50% { transform: translate(-3px, -3px);
+    } 100% { 
+        transform: translate(3px, -3px); 
+    } 
+}
